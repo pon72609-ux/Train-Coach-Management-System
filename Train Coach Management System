@@ -1,0 +1,113 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Train Coach Management</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            background-color: #f0f8ff;
+            padding: 30px;
+        }
+
+        h1 {
+            color: darkblue;
+        }
+
+        input, button {
+            padding: 10px;
+            margin: 5px;
+        }
+
+        button {
+            background-color: navy;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        #coaches {
+            margin-top: 20px;
+            font-size: 20px;
+            color: darkgreen;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Train Coach Management System</h1>
+
+    <input type="text" id="coach" placeholder="Enter coach name">
+
+    <br>
+
+    <button onclick="addBeginning()">Add at Beginning</button>
+    <button onclick="addEnd()">Add at End</button>
+    <button onclick="removeCoach()">Remove Coach</button>
+    <button onclick="displayCoaches()">Display Coaches</button>
+
+    <div id="coaches"></div>
+
+    <script>
+        // Linked list of train coaches
+        let coaches = ["Coach1", "Coach2", "Coach3", "Coach4"];
+
+        function addBeginning() {
+            let name = document.getElementById("coach").value;
+
+            if (name == "") {
+                alert("Enter a coach name");
+                return;
+            }
+
+            coaches.unshift(name);
+            displayCoaches();
+        }
+
+        function addEnd() {
+            let name = document.getElementById("coach").value;
+
+            if (name == "") {
+                alert("Enter a coach name");
+                return;
+            }
+
+            coaches.push(name);
+            displayCoaches();
+        }
+
+        function removeCoach() {
+            if (coaches.length == 0) {
+                alert("No coaches to remove");
+                return;
+            }
+
+            coaches.shift();
+            displayCoaches();
+        }
+
+        function displayCoaches() {
+            let result = "";
+
+            for (let i = 0; i < coaches.length; i++) {
+                result += coaches[i];
+
+                if (i < coaches.length - 1) {
+                    result += " → ";
+                }
+            }
+
+            result += " → NULL";
+
+            document.getElementById("coaches").innerText = result;
+        }
+
+        displayCoaches();
+    </script>
+
+</body>
+</html>
